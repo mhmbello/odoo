@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record model="ir.ui.view" id="wizard_export_bulletin_paie">
+            <field name="name">wizard.export.bulletin.paie.form</field>
+            <field name="model">wizard.export.bulletin.paie</field>
+            <field name="arch" type="xml">
+                <form string="Export Jouranl De Paie">
+                    <p>To Export Journal de Paie Press button Export</p>
+                    <field name="year"/>
+                    <footer>
+                        <button name="button_confirm" string="Export" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+	            </form>
+
+	        </field>
+	    </record>
+
+        <act_window id="export_bulletin_paie"
+            name="Export bulletins de paie"
+            binding_model="hr.employee"
+            res_model="wizard.export.bulletin.paie"
+            view_mode="form"
+            target="new"
+        />
+	</data>
+</odoo>
