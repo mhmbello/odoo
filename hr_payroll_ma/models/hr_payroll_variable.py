@@ -114,7 +114,7 @@ class HrPayrollVariable(models.Model):
             if not record.file_content:
                     raise UserError(('Erreur!'), ("Veuillez indiquer le fichier CSV !"))
             file_content = record.file_content
-            file_content_binary = base64.decodestring(file_content)
+            file_content_binary = base64.b64decode(file_content)
             file_content_binary = file_content_binary.decode("ISO-8859-1")
             if file_content_binary:
                 file_content_reader = file_content_binary.split('\n')

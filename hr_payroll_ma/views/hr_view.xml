@@ -54,12 +54,13 @@
 							<field name="monthly_hour_number" />
 							<field name="cotisation" />
 							<field name="ir" />
-							<field name="per_patronal" />
+							<!--<field name="per_patronal" />
 							<field name="per_salarial" />
-							<field name="taxe_solidarite" widget="radio"/>
-							<button name="net_to_brute" string="Net / Brute" type="object"
-								icon="fa-exchange" />
+							<field name="taxe_solidarite" widget="radio"/>-->
+
 							<field name="net_salary" />
+                            <button name="net_to_brute" string="Net / Brute" type="object"
+								icon="fa-exchange" />
 							<field name="brut_salary" />
 							<field name="rubrique_ids" colspan="4" nolabel="1" />
 						</group>
@@ -204,14 +205,24 @@
 
 
 
-		<menuitem parent="" id="menu_ressources_humaines_root" name="Ressources Humaines"
-			sequence="4" />
+		<menuitem parent="hr.menu_hr_root"
+				  id="menu_ressources_humaines_root"
+				  name="Ressources Humaines"
+				  sequence="4" />
 
-		<menuitem parent="menu_ressources_humaines_root" id="hr.menu_human_resources_configuration" name="Configuration"/>
-		<menuitem parent="menu_ressources_humaines_root" id="hr.menu_hr_root"
-			name="Ressources Humaines" sequence="4" />
-		<menuitem parent="hr.menu_human_resources_configuration" id="menu_job_id"
-			action="hr.action_hr_job" sequence="4" />
+		<menuitem parent="hr.menu_hr_root"
+				  id="hr.menu_human_resources_configuration"
+				  name="Configuration"/>
+
+		<menuitem parent="menu_ressources_humaines_root"
+				  id="hr.menu_hr_rootf"
+				  name="Ressources Humaines"
+				  sequence="4" />
+
+		<menuitem parent="hr.menu_human_resources_configuration"
+				  id="menu_job_id"
+				  action="hr.action_hr_job"
+				  sequence="4" />
 	</data>
 </odoo>
     

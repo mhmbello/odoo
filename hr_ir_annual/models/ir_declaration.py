@@ -364,7 +364,7 @@ class IrDeclaration(models.Model):
         fp = BytesIO()
         workbook.save(fp)
         self.write({
-            'file_data': base64.encodestring(fp.getvalue()),
+            'file_data': base64.encodebytes(fp.getvalue()),
             'filename': filename,
         })
         fp.close()

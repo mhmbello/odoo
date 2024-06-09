@@ -536,42 +536,48 @@
 			<field name="arch" type="xml">
 				<form string="Declaration IR">
 					<header>
-						<button name="prepare" string="Préparer" type="object" modifiers="{'invisible': [['state', '!=', 'draft']]}"/>
-						<button name="load_xml" string="Préparer XML" type="object" modifiers="{'invisible': [['state', '!=', 'prepare']]}"/>
-						<button name="load_data" string="Charger" type="object" modifiers="{'invisible': [['state', '!=', 'prepare']]}"/>
-						<button name="close" string="Clôturer" type="object" modifiers="{'invisible': [['state', '!=', 'load_xml']]}"/>
-
+						<button name="prepare" string="Préparer" type="object"
+							invisible="state not in 'draft'" icon="fa-eraser" />
+						<button name="load_xml" string="Préparer XML" type="object"
+							invisible="state not in 'prepare'" icon="fa-check-circle" />
+						<button name="load_data" string="Charger" type="object"
+							invisible="state not in 'prepare'" icon="fa-check-circle" />
+						<button name="close" string="Clôturer" type="object"
+							invisible="state not in 'load_xml'" />
 						<button name="back_draft" string="Remettre en brouillon" type="object" icon="fa-eraser" />
 						<button name="export_report" string="Exporter en excel" type="object" icon="fa-eraser" />
 						<button string="Générer XML" name="generate_ir_xml" type="object"
 							class="oe_highlight" />
 						<field name="state" widget="statusbar" statusbar_visible="draft,prepare,load_xml,close"/>
-						
+
 					</header>
-					<group col="4" colspan="4">
-						<field name="nom" />
-						<field name="prenom" />
-						<field name="raison_sociale" />
+					<group col="2">
+					    <group>
+						<field name="nom"/>
+						<field name="prenom"/>
+						<field name="raison_sociale"/>
 						<field name="company_ids" widget="many2many_tags"/>
-						<field name="date_from" />
-						<field name="date_to" />
-						<field name="commune" />
-						<field name="annee" />
+						</group>
+						<group>
+						<field name="date_from"/>
+						<field name="date_to"/>
+						<field name="commune"/>
+						<field name="annee"/>
+						</group>
 					</group>
 					<group>
 						<field name="hr_payroll_ma_ids" readonly="1" widget="many2many_tags"/>
 					</group>
-					<group col="4" colspan="4" string="Effectif" modifiers="{'invisible': [['state', 'not in', ['prepare','load_xml','close']]]}">
-
+					<group col="4" colspan="4" string="Effectif" invisible="state not in ('prepare','load_xml','close')">
 						<field name="effectifTotal" />
 						<field name="nbrPersoPermanent" />
 						<field name="nbrPersoOccasionnel" />
 						<field name="nbrStagiaires" />
 					</group>
-					<group string="Ficher XML" modifiers="{'invisible': [['state', 'not in', ['load_xml','close']]]}">
+					<group string="Ficher XML" invisible="state not in ('load_xml','close')">
 						<field name="output" filename="output_name" />
 					</group>
-					<notebook modifiers="{'page': [['state', 'in', ['prepare', 'load_xml', 'close']]]}">
+					<notebook invisible="state not in ('prepare','load_xml','close')">
 						<page string="Totaux des montants">
 							<group col="4" colspan="4" string="Totaux des montants">
 								<label
@@ -717,20 +723,20 @@
 			<field name="res_model">ir.declaration</field>
 			<field name="view_mode">tree,form</field>
 		</record>
-		
+
 		<record id="action_ir_declaration_uid" model="ir.actions.act_window">
 			<field name="name">Mes déclarations</field>
 			<field name="res_model">ir.declaration</field>
 			<field name="view_mode">tree,form</field>
 			<field name="domain">[('create_uid','=',uid)]</field>
 		</record>
-		
+
 		<menuitem action="action_ir_declaration" id="menu_ir_declaration"
 			parent="menu_declaration_ir" sequence="1" />
-			
+
 		<menuitem action="action_ir_declaration_uid" id="menu_ir_declaration_uid"
 			parent="menu_declaration_ir" sequence="2" />
-		
+
 
 		<record model="ir.ui.view" id="view_company_ir_dec">
 			<field name="name">res.company.form.ir.inherits</field>

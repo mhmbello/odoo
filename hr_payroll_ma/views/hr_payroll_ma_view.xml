@@ -24,16 +24,20 @@
 						<field name="state" widget="statusbar" statusbar_visible="draft,confirmed"
 							statusbar_colors='{"confirmed":"blue"}' />
 					</header>
-					<group colspan="4" col="6">
-						<field name="number" />
+					<group col="2">
+					<group>
+						<field name="number"/>
 						<field name="journal_id" readonly="state == 'confirmed'"/>
 						<field name="currency_id" readonly="state == 'confirmed'"/>
 						<field name="company_id" readonly="state == 'confirmed'"/>
 						<field name="date_salary" readonly="state == 'confirmed'"/>
+					</group>
+						<group>
 						<field name="period_id" readonly="state == 'confirmed'"/>
 						<field name="date_start" readonly="state == 'confirmed'"/>
 						<field name="date_end" readonly="state == 'confirmed'"/>
 						<field name="move_id" readonly="state == 'confirmed'"/>
+					</group>
 					</group>
 					<group>
 						<field name="name" readonly="state == 'confirmed'"/>
@@ -56,38 +60,36 @@
 										<page string="salary">
 											<field colspan="4" name="salary_line_ids" nolabel="1"
 												widget="one2many_list" />
-											<group colspan="4" col="6">
-												<field name="salaire_brute" />
-												<field name="salaire_brute_imposable" />
-												<field name="salaire_brute_imposable_ir" />
-												<field name="salaire_net_imposable" />
-												<field name="cotisations_employee" />
-												<field name="cotisations_employer" />
-												<field name="salaire_net" />
-												<field name="salaire_net_a_payer" />
-
-											</group>
-
-											<group string="Cumuls">
+											<group col="3">
 												<group>
-													<field name="cumul_work_days" />
-													<field name="cumul_sb" />
-													<field name="cumul_sbi" />
-													<field name="cumul_sbir" />
-													<field name="cumul_sni" />
-													<field name="cumul_sni_n_1" />
-													<field name="cumul_avn" />
-												</group>
-												<group>
-													<field name="cumul_ee_cotis" />
-													<field name="cumul_er_cotis" />
-													<field name="cumul_igr" />
-													<field name="cumul_fp" />
-													<field name="cumul_indemnites_fp" />
-													<field name="cumul_exo" />
-
+												<field name="salaire_brute"/>
+												<field name="salaire_brute_imposable"/>
+												<field name="salaire_brute_imposable_ir"/>
+												<field name="salaire_net"/>
+												<field name="salaire_net_imposable"/>
+												<field name="cotisations_employee"/>
+												<field name="cotisations_employer"/>
 												</group>
 
+												<group string="cumul">
+												<field name="salaire_net_a_payer"/>
+												<field name="cumul_work_days"/>
+												<field name="cumul_sb"/>
+												<field name="cumul_sbi"/>
+												<field name="cumul_sbir"/>
+												<field name="cumul_sni"/>
+												<field name="cumul_avn"/>
+												</group>
+
+												<group>
+												<field name="cumul_igr"/>
+												<field name="cumul_ee_cotis"/>
+												<field name="cumul_er_cotis"/>
+												<field name="cumul_fp"/>
+												<field name="cumul_indemnites_fp"/>
+												<field name="cumul_exo"/>
+												<field name="cumul_chargefam"/>
+												</group>
 											</group>
 
 											<group>
@@ -124,11 +126,6 @@
 									<field name="salaire_net_a_payer" sum="total_6" />
 								</tree>
 							</field>
-
-							<group col="5" colspan="4">
-
-
-							</group>
 						</page>
 						
 					</notebook>
@@ -204,29 +201,34 @@
 						<page string="salary">
 							<field colspan="4" name="salary_line_ids" nolabel="1"
 								widget="one2many_list" />
-							<group colspan="4" col="6">
-								<field name="salaire_brute" />
-								<field name="salaire_brute_imposable" />
-								<field name="salaire_brute_imposable_ir" />
-								<field name="salaire_net" />
-								<field name="salaire_net_imposable" />
-								<field name="cotisations_employee" />
-								<field name="cotisations_employer" />
-								<field name="salaire_net_a_payer" />
-
-								<field name="cumul_work_days" />
-								<field name="cumul_sb" />
-								<field name="cumul_sbi" />
-								<field name="cumul_sbir" />
-								<field name="cumul_sni" />
-								<field name="cumul_avn" />
-								<field name="cumul_igr" />
-								<field name="cumul_ee_cotis" />
-								<field name="cumul_er_cotis" />
-								<field name="cumul_fp" />
-								<field name="cumul_indemnites_fp" />
-								<field name="cumul_exo" />
-								<field name="cumul_chargefam" />
+							<group col="3">
+							    <group>
+								<field name="salaire_brute"/>
+								<field name="salaire_brute_imposable"/>
+								<field name="salaire_brute_imposable_ir"/>
+								<field name="salaire_net"/>
+								<field name="salaire_net_imposable"/>
+								<field name="cotisations_employee"/>
+								<field name="cotisations_employer"/>
+								</group>
+								<group string="cumul">
+								<field name="salaire_net_a_payer"/>
+								<field name="cumul_work_days"/>
+								<field name="cumul_sb"/>
+								<field name="cumul_sbi"/>
+								<field name="cumul_sbir"/>
+								<field name="cumul_sni"/>
+								<field name="cumul_avn"/>
+								</group>
+								<group>
+								<field name="cumul_igr"/>
+								<field name="cumul_ee_cotis"/>
+								<field name="cumul_er_cotis"/>
+								<field name="cumul_fp"/>
+								<field name="cumul_indemnites_fp"/>
+								<field name="cumul_exo"/>
+								<field name="cumul_chargefam"/>
+								</group>
 							</group>
 							<group>
 								<field name="salaire_net_a_payer_text" />
